@@ -7,7 +7,7 @@ $dbname = "phpuser";
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-$sql = "SELECT * FROM user";
+$sql = "SELECT * FROM user ";
 
 $stmt = $conn->prepare($sql);
 

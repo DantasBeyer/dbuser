@@ -7,6 +7,14 @@ $dbname = "phpuser";
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-$sql = "UPDATE User SET fname='Barack' where id=4 ";
+$sql = "UPDATE User SET fname=:fname where id=:id ";
 
-$conn->exec($sql);
+$fname = "Barack";
+$id= 5;
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(":fname",$fname);
+$stmt->bindParam(":id",$id);
+$stmt->execute();
+
+
+

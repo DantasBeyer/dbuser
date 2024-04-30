@@ -6,6 +6,11 @@ $dbname = "phpuser";
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-$sql = "DELETE FROM user where id=2";
+$sql = "DELETE FROM user where id=:id";
 
-$conn->exec($sql);
+$id = 1;
+
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':id',$id);
+$stmt->execute();
+
