@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 
     $stmt->execute();
     echo "User erstellt";
+    echo "<a  href='index.php'>Zurueck</a>";
 } else {
 
 

@@ -1,18 +1,19 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "phpuser";
-
-$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-$sql = "SELECT * FROM user ";
-
-$stmt = $conn->prepare($sql);
-
-$stmt->execute();
-
-$result = $stmt->fetchAll(2);
+include "User.php";
+//$servername = "localhost";
+//$username = "root";
+//$password = "";
+//$dbname = "phpuser";
+//
+//$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+//
+//$sql = "SELECT * FROM user ";
+//
+//$stmt = $conn->prepare($sql);
+//
+//$stmt->execute();
+//
+//$result = $stmt->fetchAll(2);
 
 ?>
 
@@ -34,7 +35,7 @@ $result = $stmt->fetchAll(2);
 <div class='container ml-20 pt-10'>
     <div class='row'>
         <?php
-        foreach ($result as $row) {
+        foreach (User::findAll() as $user) {
 //        echo "<div style='margin: 20px; border: red solid ;background-color: #7979ea; display: inline-block' >";
 //        echo "<p> Vorname:" . $row['fname'] . "</p>";
 //        echo "<p> Nachname:" . $row['lname'] . "</p>";
@@ -48,11 +49,11 @@ $result = $stmt->fetchAll(2);
                 <div class="card">
                     <div class="card-body">
                         <?php
-                        echo '<h5 class="card-title">' . $row["fname"] . " " . $row["lname"] . ' </h5>';
-                        echo '<p class="card-text">' . $row["email"] . '</p>';
+                        echo '<h5 class="card-title">' . $user->getFname() . " " . $user->getLname() . ' </h5>';
+                        echo '<p class="card-text">' . $user->getEmail() . '</p>';
                         ?>
-                        <a href="update.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Update</a>
-                        <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
+                        <a href="update.php?id=<?php echo $user->getId(); ?>" class="btn btn-primary">Update</a>
+                        <a href="delete.php?id=<?php echo $user->getId(); ?>" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
