@@ -2,27 +2,6 @@
 include 'User.php';
 if ($_SERVER['REQUEST_METHOD']=="POST") {
 
-
-//    $servername = "localhost";
-//    $username = "root";
-//    $password = "";
-//    $dbname = "phpuser";
-//
-//    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-//
-//    $fname = $_POST["fname"];
-//    $lname = $_POST['lname'];
-//    $email = $_POST['email'];
-//
-//    $sql = "INSERT INTO user (fname, lname, email) VALUES (:fname, :lname, :email)";
-//
-//    $stmt = $conn->prepare($sql);
-//    $stmt->bindParam(":fname", $fname);
-//    $stmt->bindParam(":lname", $lname);
-//    $stmt->bindParam(":email", $email);
-//
-//    $stmt->execute();
-
     User::create($_POST['fname'],$_POST['lname'],$_POST['email']);
     echo "User erstellt";
     echo "<a  href='index.php'>Zurueck</a>";

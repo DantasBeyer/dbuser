@@ -1,41 +1,21 @@
 <?php
 include 'User.php';
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$dbname = "phpuser";
-//$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
 $id = $_GET['id'] ?? $_POST["id"];
 $user = User::findOneById($id);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-//    var_dump($_POST);
-//    $sql = "UPDATE User SET fname=:fname , lname=:lname, email=:email where id=:id ";\
+
 
     $user->setFname($_POST['fname']);
     $user->setLname($_POST['lname']);
     $user->setEmail($_POST['email']);
 
-//    $stmt = $conn->prepare($sql);
-//    $stmt->bindParam(":fname",$fname);
-//    $stmt->bindParam(":lname",$lname);
-//    $stmt->bindParam(":email",$email);
-//    $stmt->bindParam(":id",$id);
-//    $stmt->execute();
+
     echo 'update';
     header( "refresh:5;url=index.php" );
     exit();
 } elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
-
-//    $sql = "SELECT * FROM user where id=:id";
-//    $id = $_GET['id'];
-//    $stmt = $conn->prepare($sql);
-//    $stmt->bindParam(':id', $id);
-//    $stmt->execute();
-//    $result = $stmt->fetch(2);
-//    var_dump($result);
-
-
     ?>
     <!doctype html>
     <html lang='en'>

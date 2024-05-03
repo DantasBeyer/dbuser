@@ -1,19 +1,6 @@
 <?php
 include "User.php";
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$dbname = "phpuser";
-//
-//$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-//
-//$sql = "SELECT * FROM user ";
-//
-//$stmt = $conn->prepare($sql);
-//
-//$stmt->execute();
-//
-//$result = $stmt->fetchAll(2);
+
 
 ?>
 
@@ -36,14 +23,6 @@ include "User.php";
     <div class='row'>
         <?php
         foreach (User::findAll() as $user) {
-//        echo "<div style='margin: 20px; border: red solid ;background-color: #7979ea; display: inline-block' >";
-//        echo "<p> Vorname:" . $row['fname'] . "</p>";
-//        echo "<p> Nachname:" . $row['lname'] . "</p>";
-//        echo "<p> email:" . $row['email'] . "</p>";
-//        echo "<a href='delete.php'><button>Delete</button></a>";
-//        echo "<a href='create.php'><button>Create</button></a>";
-//        echo '</div>';
-//
             ?>
             <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
                 <div class="card">

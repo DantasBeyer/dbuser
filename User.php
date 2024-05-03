@@ -2,22 +2,11 @@
 
 class User
 {
-
     private int $id;
     private string $fname;
     private string $lname;
     private string $email;
 
-
-    public static function db_conn()
-    {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "phpuser";
-        return new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-    }
 
     /**
      * @return string
@@ -78,32 +67,15 @@ class User
         $this->update();
     }
 
+    public static function db_conn(): PDO
+    {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "phpuser";
+        return new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-
-
-
-
-//    public static function findall():array
-//    {
-//        $servername = "localhost";
-//        $username = "root";
-//        $password = "";
-//        $dbname = "phpuser";
-//
-//        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-//        $sql = "SELECT * FROM user";
-//        $stmt = $conn->prepare($sql);
-//        $stmt->execute();
-//        $result = $stmt->fetchAll(2);
-//        $userarray = [];
-//        foreach ($result as $row) {
-//            $userarray[] =  new User($row['id'],$row["fname"],$row['lname'],$row['email']);
-//        }
-//
-//        return $userarray;
-//
-//
-//    }
+    }
 
     /**
      * @return User[]|false
@@ -117,7 +89,6 @@ class User
         return $stmt->fetchAll(8, 'User');
     }
 
-
     public static function findOneById(int $id): User
     {
         $conn = self::db_conn();
@@ -127,7 +98,6 @@ class User
         $stmt->execute();
         return $stmt->fetchObject('User');
     }
-
 
     public static function create(string $fname, string $lname, string $email): User
     {
@@ -154,7 +124,7 @@ class User
         return $stmt->execute();
     }
 
-    public function delete(User &$user): bool
+    public function delete(User $user): bool
     {
         $conn = self::db_conn();
         $sql = 'DELETE FROM user where id=:id';
@@ -164,10 +134,5 @@ class User
         return $stmt->execute();
 
 
-    }
-
-    public function echoName(): void
-    {
-        echo $this->fname;
     }
 }
