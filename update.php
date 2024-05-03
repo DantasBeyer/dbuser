@@ -1,39 +1,39 @@
 <?php
+include 'User.php';
+//$servername = "localhost";
+//$username = "root";
+//$password = "";
+//$dbname = "phpuser";
+//$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$id = $_GET['id'] ?? $_POST["id"];
+$user = User::findOneById($id);
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "phpuser";
-$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-if ($_SERVER['REQUEST_METHOD']=="POST"){
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
 //    var_dump($_POST);
-    $sql = "UPDATE User SET fname=:fname , lname=:lname, email=:email where id=:id ";
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $email = $_POST['email'];
-    $id= $_POST['id'];
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(":fname",$fname);
-    $stmt->bindParam(":lname",$lname);
-    $stmt->bindParam(":email",$email);
-    $stmt->bindParam(":id",$id);
-    $stmt->execute();
+//    $sql = "UPDATE User SET fname=:fname , lname=:lname, email=:email where id=:id ";\
+
+    $user->setFname($_POST['fname']);
+    $user->setLname($_POST['lname']);
+    $user->setEmail($_POST['email']);
+
+//    $stmt = $conn->prepare($sql);
+//    $stmt->bindParam(":fname",$fname);
+//    $stmt->bindParam(":lname",$lname);
+//    $stmt->bindParam(":email",$email);
+//    $stmt->bindParam(":id",$id);
+//    $stmt->execute();
     echo 'update';
     echo "<a  href='index.php'>Zurueck</a>";
 
-} elseif ($_SERVER['REQUEST_METHOD']=="GET"){
+} elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
 
-    $sql = "SELECT * FROM user where id=:id";
-    $id= $_GET['id'];
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':id',$id);
-    $stmt->execute();
-    $result = $stmt->fetch(2);
+//    $sql = "SELECT * FROM user where id=:id";
+//    $id = $_GET['id'];
+//    $stmt = $conn->prepare($sql);
+//    $stmt->bindParam(':id', $id);
+//    $stmt->execute();
+//    $result = $stmt->fetch(2);
 //    var_dump($result);
-
-
-
 
 
     ?>
@@ -57,22 +57,25 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         <div class='container ml-20 shadow-lg pt-10 p-3 my-5 bg-body-tertiary rounded'>
             <form method='post' action='update.php' class='mb-10 '>
                 <div class="form-floating  mb-3 mt-5">
-                    <input type="text" class="form-control" id="fname" name='fname' placeholder="" value='<?php echo $result['fname'] ?>'>
+                    <input type="text" class="form-control" id="fname" name='fname' placeholder=""
+                           value='<?php echo $user->getFname() ?>'>
                     <label for="fname">Vorname</label>
                 </div>
                 <div class="form-floating  mb-3">
-                    <input type="text" class="form-control" id="lname" name='lname' placeholder="Nachname" value='<?php echo $result['lname'] ?>'>
+                    <input type="text" class="form-control" id="lname" name='lname' placeholder="Nachname"
+                           value='<?php echo $user->getLname() ?>'>
                     <label for="lname">Nachname</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email" name='email' placeholder="name@example.com" value='<?php echo $result['email'] ?>'>
+                    <input type="email" class="form-control" id="email" name='email' placeholder="name@example.com"
+                           value='<?php echo $user->getEmail() ?>'>
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-3 ml-10">
                     <input type='submit' value='Save' class="btn btn-dark ">
                 </div>
                 <div>
-                    <input class="form-control" type='hidden' id='id' name='id' value='<?php echo $result['id'] ?>'>
+                    <input class="form-control" type='hidden' id='id' name='id' value='<?php echo $user->getId() ?>'>
                 </div>
             </form>
         </div>
