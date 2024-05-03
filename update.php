@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 //    $stmt->bindParam(":id",$id);
 //    $stmt->execute();
     echo 'update';
-    echo "<a  href='index.php'>Zurueck</a>";
-
+    header( "refresh:5;url=index.php" );
+    exit();
 } elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 //    $sql = "SELECT * FROM user where id=:id";

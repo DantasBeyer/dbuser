@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
     User::create($_POST['fname'],$_POST['lname'],$_POST['email']);
     echo "User erstellt";
     echo "<a  href='index.php'>Zurueck</a>";
+    header( "refresh:5;url=index.php" );
+    exit();
 } else {
 
 
